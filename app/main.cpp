@@ -1,10 +1,7 @@
 #include <iostream>
-#include "batzerlDB.hpp"
+#include "batzerl_db.hpp"
 
 int main(int, char**) {
-  std::cout << "Welcome to BatzerlDB" << std::endl;
-  BatzerlDB* db = new BatzerlDB();
-
-  delete db;
+  /*BatzerlDB* DB = */BatzerlDB::getInstance();
   return 0;
 }
