@@ -5,8 +5,8 @@ project(batzerlDB)
 
 add_library(batzerlDB 
   source/batzerl_db.cpp 
-  source/input_manager.cpp
-  source/error_manager.cpp
+  source/data_storage.cpp
+  source/hash_table.cpp
   )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)

@@ -3,11 +3,6 @@
 
 #include <iostream>
 #include <filesystem>
-#include "input_manager.hpp"
-#include "error_manager.hpp"
-
-const std::string WELCOME_TEXT = "Welcome to BatzerlDB\n";
-const std::string CONFIC_TEXT = "Please enter the path to the Database\n";
 
 class BatzerlDB
 {
@@ -16,11 +11,15 @@ class BatzerlDB
     BatzerlDB(/* args */);
     ~BatzerlDB();
 
-    void requestInformation();
+    int write();
   public:
     BatzerlDB(BatzerlDB &other) = delete;
     void operator=(const BatzerlDB&) = delete;
     static BatzerlDB* getInstance();
+
+    int put();
+    int get();
+    int remove();
 };
 
 #endif

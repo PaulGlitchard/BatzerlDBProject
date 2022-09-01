@@ -2,11 +2,9 @@
 
 BatzerlDB* BatzerlDB::instance_ = nullptr;
 
-BatzerlDB::BatzerlDB(/* args */)
+BatzerlDB::BatzerlDB()
 {
-  ErrorManager::getInstance();
-  std::cout << WELCOME_TEXT;
-  requestInformation();
+
 }
 
 BatzerlDB::~BatzerlDB()
@@ -19,11 +17,4 @@ BatzerlDB* BatzerlDB::getInstance() {
     instance_ = new BatzerlDB();
   }
   return instance_;
-}
-
-void BatzerlDB::requestInformation() {
-  std::cout << CONFIC_TEXT;
-  InputManager* input = new InputManager(1);
-
-  delete input;
 }
