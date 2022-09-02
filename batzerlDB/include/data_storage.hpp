@@ -4,20 +4,17 @@
 #include <string>
 #include <vector>
 #include "constants.hpp"
-// #include "hash_table.hpp"
+#include "hash_table.hpp"
 
 
 class DataStorage
 {
-  private:
-    static DataStorage* instance_;    
-
+  private: 
+    
+  public:
     DataStorage();
     ~DataStorage();
-  public:
-    DataStorage(DataStorage &other) = delete;
-    void operator=(const DataStorage&) = delete;
-    static DataStorage* getInstance();
+
 };
 
 #endif

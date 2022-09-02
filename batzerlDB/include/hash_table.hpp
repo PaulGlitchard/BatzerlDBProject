@@ -3,30 +3,31 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "constants.hpp"
 
 struct HashItem
 {
-  std::string str;
-  std::vector<std::string> attributes;
+  std::string name;
+  std::vector<std::string> att;
 };
 
 class HashTable
 {
   private:
-    static HashTable* instance_;
     HashItem** items_;
     int size_;
-    
-    HashTable();
-    ~HashTable();
+    int count_;
   public:
-    HashTable(HashTable &other) = delete;
-    void operator=(const HashTable&) = delete;
-    static HashTable* getInstance();
+    HashTable(int size);
+    ~HashTable();
 
+    HashItem* createItem(std::string name, std::vector<std::string> att);
     void createTable();
-    int hashFunction(std::string str);
+    int hashFunction(std::string str, int offset);
+    bool insertItem(std::string name, std::vector<std::string> att);
+    std::vector<std::string> getItem(std::string name);
+    bool deleteItem(std::string name);
 
 };
 
