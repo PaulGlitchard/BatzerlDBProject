@@ -12,11 +12,11 @@ namespace StringConst
   const std::string ALREADY_EXISTS = "This already exists";
 }
 
-// typedef enum _ErrorCodes_
-// {
-//   NO_ERROR,
-//   NO_EXIST
-// } ErrorCodes;
+typedef enum _ErrorCodes_
+{
+  NO_ERROR,
+  NO_EXIST
+} ErrorCodes;
 
 
 #endif

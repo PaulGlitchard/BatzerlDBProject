@@ -7,14 +7,8 @@
 #include "constants.hpp"
 #include "data_storage.hpp"
 #include "hash_table.hpp"
-
-// struct Output
-// {
-//   std::string str;
-//   std::vector<std::string> list;
-
-// };
-
+#include "error_manager.hpp"
+#include "output.hpp"
 
 class BatzerlDB
 {
@@ -22,6 +16,7 @@ class BatzerlDB
     static BatzerlDB* instance_;
     HashTable* hash_table_;
     DataStorage* data_storage_;
+    ErrorManager* error_manager_;
 
     BatzerlDB();
     ~BatzerlDB();

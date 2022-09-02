@@ -4,6 +4,7 @@ HashTable::HashTable(int size):
 size_{size},
 count_{0}
 {
+  error_manager_ = new ErrorManager();
   createTable();
 }
 
@@ -17,6 +18,7 @@ HashTable::~HashTable()
     }
   }
   delete items_;
+  delete error_manager_;
 }
 
 HashItem* HashTable::createItem(std::string name, std::vector<std::string> att)
@@ -46,7 +48,7 @@ int HashTable::hashFunction(std::string str, int offset)
   return ((address + offset) % size_);
 }
 
-bool HashTable::insertItem(std::string name, std::vector<std::string> att)
+Output HashTable::insertItem(std::string name, std::vector<std::string> att)
 {
   if (count_ == size_)
   {
@@ -77,7 +79,7 @@ bool HashTable::insertItem(std::string name, std::vector<std::string> att)
   return true;  
 }
 
-std::vector<std::string> HashTable::getItem(std::string name)
+Output HashTable::getItem(std::string name)
 {
   int offset{0};
   int index{0};
@@ -102,7 +104,7 @@ std::vector<std::string> HashTable::getItem(std::string name)
   return output;
 }
 
-bool HashTable::deleteItem(std::string name)
+Output HashTable::deleteItem(std::string name)
 {
   int offset{0};
   int index{0};

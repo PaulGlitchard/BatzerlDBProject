@@ -4,6 +4,7 @@ BatzerlDB* BatzerlDB::instance_ = nullptr;
 
 BatzerlDB::BatzerlDB()
 {
+  error_manager_ = new ErrorManager();
   hash_table_ = new HashTable(ValueConst::HASH_TABLE_LENGTH);
   data_storage_ = new DataStorage();
 }
