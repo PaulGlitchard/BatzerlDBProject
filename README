@@ -8,3 +8,8 @@ This project is me learning about key value stores and improving my c++ knowledg
 - object oriented design
 - c++ in general
 - Algorithms and data structures
+- CMake
+
+# Style Guide
+I will use Google's C++ Style Guide  
+https://google.github.io/styleguide/cppguide.html
