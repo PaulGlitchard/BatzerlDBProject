@@ -6,10 +6,11 @@
 class ErrorManager
 {
 private:
-  /* data */
+  
 public:
   ErrorManager(/* args */);
   ~ErrorManager();
+
 };
 
 

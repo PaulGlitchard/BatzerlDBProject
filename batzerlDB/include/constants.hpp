@@ -8,14 +8,15 @@ namespace ValueConst
 
 namespace StringConst
 {
-  const std::string NO_MORE_PLACE = "There is no more space";
-  const std::string ALREADY_EXISTS = "This already exists";
+  const char NO_MORE_PLACE[] = "There is no more space";
+  const char ALREADY_EXISTS[] = "This already exists";
 }
 
 typedef enum _ErrorCodes_
 {
   NO_ERROR,
-  NO_EXIST
+  NO_EXIST,
+  ALREADY_EXIST
 } ErrorCodes;
 
 

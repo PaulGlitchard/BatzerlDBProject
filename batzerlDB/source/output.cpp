@@ -4,8 +4,29 @@ Output::Output(/* args */)
 {
 }
 
+Output::Output(std::string name):
+name_{name},
+error_code_{ErrorCodes::NO_ERROR}
+{
+}
+
 Output::~Output()
 {
+}
+
+void Output::setName(std::string name)
+{
+  name_ = name;
+}
+
+void Output::setList(std::vector<std::string> list)
+{
+  list_ = list;
+}
+
+void Output::setError(ErrorCodes error)
+{
+  error_code_ = error;
 }
 
 std::string Output::getName()
@@ -20,6 +41,6 @@ std::vector<std::string> Output::getList()
 
 ErrorCodes Output::getErrorCode()
 {
-  return ErrorCodes;
+  return error_code_;
 }
 

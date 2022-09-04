@@ -48,13 +48,15 @@ int HashTable::hashFunction(std::string str, int offset)
   return ((address + offset) % size_);
 }
 
-Output HashTable::insertItem(std::string name, std::vector<std::string> att)
+ErrorCodes HashTable::insertItem(std::string name, std::vector<std::string> att)
 {
   if (count_ == size_)
   {
     std::cout << StringConst::NO_MORE_PLACE << std::endl;
-    return false;
+    return ErrorCodes::NO_EXIST;
   }
+
+  
   
   int offset{0};
   int index{0};
@@ -69,21 +71,21 @@ Output HashTable::insertItem(std::string name, std::vector<std::string> att)
     else if(items_[index]->name == name) 
     {
       std::cout << StringConst::ALREADY_EXISTS << std::endl;
-      return false;
+      return ErrorCodes::ALREADY_EXIST;
     }
     else
     {
       offset++;
     }
   }
-  return true;  
+  return ErrorCodes::NO_ERROR;  
 }
 
 Output HashTable::getItem(std::string name)
 {
   int offset{0};
   int index{0};
-  std::vector<std::string> output{};
+  Output output;
   while (1)
   {
     index = hashFunction(name, offset);
@@ -93,7 +95,7 @@ Output HashTable::getItem(std::string name)
     }
     else if(items_[index]->name == name) 
     {
-      output = items_[index]->att;
+      output.setList(items_[index]->att);
       break;
     }
     else
@@ -104,8 +106,9 @@ Output HashTable::getItem(std::string name)
   return output;
 }
 
-Output HashTable::deleteItem(std::string name)
+ErrorCodes HashTable::deleteItem(std::string name)
 {
+  int i{ValueConst::HASH_TABLE_LENGTH};
   int offset{0};
   int index{0};
   while (1)
@@ -113,13 +116,13 @@ Output HashTable::deleteItem(std::string name)
     index = hashFunction(name, offset);
     if (items_[index] == nullptr)
     {
-      return false;
+      return ErrorCodes::NO_EXIST;
     }
     else if(items_[index]->name == name) 
     {
       delete items_[index];
       items_[index] = nullptr;
-      return true;
+      return ErrorCodes::NO_ERROR;
     }
     else
     {

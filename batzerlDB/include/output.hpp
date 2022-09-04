@@ -12,9 +12,13 @@ class Output
     std::vector<std::string> list_;
     ErrorCodes error_code_;
   public:
-    Output(/* args */);
+    Output();
+    Output(std::string name);
     ~Output();
 
+    void setName(std::string name);
+    void setList(std::vector<std::string> list);
+    void setError(ErrorCodes error);
     std::string getName();
     std::vector<std::string> getList();
     ErrorCodes getErrorCode();

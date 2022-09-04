@@ -27,9 +27,9 @@ class BatzerlDB
     void operator=(const BatzerlDB&) = delete;
     static BatzerlDB* getInstance();
 
-    bool put(std::string name, std::vector<std::string> att);
-    std::vector<std::string> get(std::string name);
-    bool remove(std::string name);
+    ErrorCodes put(std::string name, std::vector<std::string> att);
+    Output get(std::string name);
+    ErrorCodes remove(std::string name);
 };
 
 #endif

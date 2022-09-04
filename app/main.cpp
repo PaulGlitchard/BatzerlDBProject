@@ -14,37 +14,37 @@ int main(int, char**) {
   input = {"shelf", "western", "america"};
   db->put("franz", input);
 
-  std::vector<std::string> output;
-  output = db->get("paul");
-  if (!output.empty())
-  {
-    std::cout << output.at(0) << std::endl;
-  }
-  else
-  {
-    std::cout << "this person doesn't exist"<<std::endl;
-  }
+  // std::vector<std::string> output;
+  // output = db->get("paul");
+  // if (!output.empty())
+  // {
+  //   std::cout << output.at(0) << std::endl;
+  // }
+  // else
+  // {
+  //   std::cout << "this person doesn't exist"<<std::endl;
+  // }
   
-  output = db->get("jeff");
-  if (!output.empty())
-  {
-    std::cout << output.at(0) << std::endl;
-  }
-  else
-  {
-    std::cout << "this person doesn't exist"<<std::endl;
-  }
+  // output = db->get("jeff");
+  // if (!output.empty())
+  // {
+  //   std::cout << output.at(0) << std::endl;
+  // }
+  // else
+  // {
+  //   std::cout << "this person doesn't exist"<<std::endl;
+  // }
 
-  db->remove("paul");
-  output = db->get("paul");
-  if (!output.empty())
-  {
-    std::cout << output.at(0) << std::endl;
-  }
-  else
-  {
-    std::cout << "this person doesn't exist"<<std::endl;
-  }
+  // db->remove("paul");
+  // output = db->get("paul");
+  // if (!output.empty())
+  // {
+  //   std::cout << output.at(0) << std::endl;
+  // }
+  // else
+  // {
+  //   std::cout << "this person doesn't exist"<<std::endl;
+  // }
 
   return 0;
 }

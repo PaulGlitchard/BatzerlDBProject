@@ -21,17 +21,17 @@ BatzerlDB* BatzerlDB::getInstance() {
   return instance_;
 }
 
-bool BatzerlDB::put(std::string name, std::vector<std::string> att)
+ErrorCodes BatzerlDB::put(std::string name, std::vector<std::string> att)
 {
   return hash_table_->insertItem(name, att);
 }
 
-std::vector<std::string> BatzerlDB::get(std::string name)
+Output BatzerlDB::get(std::string name)
 {
   return hash_table_->getItem(name);
 }
 
-bool BatzerlDB::remove(std::string name)
+ErrorCodes BatzerlDB::remove(std::string name)
 {
   return hash_table_->deleteItem(name);
 }

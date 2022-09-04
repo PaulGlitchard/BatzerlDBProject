@@ -28,9 +28,9 @@ class HashTable
     HashItem* createItem(std::string name, std::vector<std::string> att);
     void createTable();
     int hashFunction(std::string str, int offset);
-    Output insertItem(std::string name, std::vector<std::string> att);
+    ErrorCodes insertItem(std::string name, std::vector<std::string> att);
     Output getItem(std::string name);
-    Output deleteItem(std::string name);
+    ErrorCodes deleteItem(std::string name);
 
 };
 
