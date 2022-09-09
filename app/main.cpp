@@ -2,7 +2,7 @@
 #include "batzerl_db.hpp"
 
 int main(int, char**) {
-  BatzerlDB* db = BatzerlDB::getInstance();
+  BatzerlDB* db = BatzerlDB::getInstance("db.json");
 
   std::vector<std::string> input = {"shelf", "easter", "europe"};
   db->put("paul", input);

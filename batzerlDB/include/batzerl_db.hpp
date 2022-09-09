@@ -18,7 +18,7 @@ class BatzerlDB
     DataStorage* data_storage_;
     ErrorManager* error_manager_;
 
-    BatzerlDB();
+    BatzerlDB(std::string path);
     ~BatzerlDB();
 
     int write();
@@ -26,6 +26,7 @@ class BatzerlDB
     BatzerlDB(BatzerlDB &other) = delete;
     void operator=(const BatzerlDB&) = delete;
     static BatzerlDB* getInstance();
+    static BatzerlDB* getInstance(std::string path);
 
     ErrorCodes put(std::string name, std::vector<std::string> att);
     Output get(std::string name);

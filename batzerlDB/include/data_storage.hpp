@@ -3,16 +3,21 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iostream>
+// #include <WinBase.h>
 #include "constants.hpp"
-#include "hash_table.hpp"
 
 
 class DataStorage
 {
   private: 
+    std::string path_;
+    char* file_in_memory_;
+    void readDatabase();
     
   public:
-    DataStorage();
+    DataStorage(std::string path);
     ~DataStorage();
 
 };

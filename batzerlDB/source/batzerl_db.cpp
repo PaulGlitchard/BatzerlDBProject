@@ -2,11 +2,11 @@
 
 BatzerlDB* BatzerlDB::instance_ = nullptr;
 
-BatzerlDB::BatzerlDB()
+BatzerlDB::BatzerlDB(std::string path)
 {
   error_manager_ = new ErrorManager();
   hash_table_ = new HashTable(ValueConst::HASH_TABLE_LENGTH);
-  data_storage_ = new DataStorage();
+  data_storage_ = new DataStorage(path);
 }
 
 BatzerlDB::~BatzerlDB()
@@ -15,8 +15,14 @@ BatzerlDB::~BatzerlDB()
 }
 
 BatzerlDB* BatzerlDB::getInstance() {
+  // if (instance_ == nullptr) {
+  //   instance_ = new BatzerlDB();
+  // }
+  return instance_;
+}
+BatzerlDB* BatzerlDB::getInstance(std::string path) {
   if (instance_ == nullptr) {
-    instance_ = new BatzerlDB();
+    instance_ = new BatzerlDB(path);
   }
   return instance_;
 }
