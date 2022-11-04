@@ -5,6 +5,8 @@ size_{size},
 count_{0}
 {
   createTable();
+
+  accessStorage();
 }
 
 HashTable::~HashTable()
@@ -38,12 +40,34 @@ void HashTable::createTable()
   }
 }
 
+
+void HashTable::accessStorage()
+{
+  int fd = open("batzerl_data.txt", O_CREAT|O_RDWR);
+  storage_ptr_ = (char*)mmap(0,321*ValueConst::HASH_TABLE_LENGTH+1,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
+  
+  // ftruncate(fd,320*ValueConst::HASH_TABLE_LENGTH+1);
+
+  storage_ptr_[321*ValueConst::HASH_TABLE_LENGTH+1] = 0;
+    
+}
+
 int HashTable::hashFunction(std::string str, int offset)
 {
   int address{0};
   for (auto &&c : str)
     address += c;
-  return ((address + offset) % size_);
+  return ((address + offset) % size_) * 321;
+}
+
+bool compareStringAndSave(std::string name, char* ptr)
+{
+  for (size_t i = 0; i < name.size(); i++)
+  {
+    if (name.at(i) != ptr[i])
+      return false;
+  }
+  return true;
 }
 
 bool HashTable::insertItem(std::string name, std::vector<std::string> att)
@@ -59,12 +83,49 @@ bool HashTable::insertItem(std::string name, std::vector<std::string> att)
   while (1)
   {
     index = hashFunction(name, offset);
-    if(items_[index] == nullptr) 
+    if(storage_ptr_[index] == 0) 
     {
-      items_[index] = createItem(name, att);
+      storage_ptr_[index] = 1;
+      index++;
+      //fill name
+      for (size_t i = 0; i < 64; i++)
+      {
+        if (i < name.size())
+        {
+          storage_ptr_[index + i] = name.at(i);
+        }
+        else
+        {
+          storage_ptr_[index + i] = 0;
+        }
+      }
+      index += 64;
+      //fill atts
+      size_t att_index = 0;
+      size_t char_counter = 0;
+      for (size_t i = 0; i < 256; i++)
+      {
+        if (att_index < att.size())
+        {
+          if (char_counter < att.at(att_index).size())
+          {
+            storage_ptr_[i] = att.at(att_index).at(char_counter);
+            char_counter++;
+          }
+          else
+          {
+            att_index++;
+          }
+        } 
+        else
+        {
+          storage_ptr_[i] = 0;
+        }       
+
+      }
       break;
     }
-    else if(items_[index]->name == name) 
+    else if(storage_ptr_[index] == 1 && compareStringAndSave(name, &storage_ptr_[index + 1])) 
     {
       std::cout << StringConst::ALREADY_EXISTS << std::endl;
       return false;
